@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egor Marachev - Infrastructure & Support Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0d1117;
+    --bg-raised: #11161d;
+    --line: #1f2630;
+    --text: #e6e6e6;
+    --text-dim: #7a8590;
+    --text-faint: #4a525c;
+    --accent: #9fd356;
+    --accent-dim: #6f9a3e;
+    --amber: #d4a24c;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    font-size:16px;
+  }
+  ::selection{ background:var(--accent-dim); color:#0d1117; }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .wrap{ max-width: 840px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV / MODE TOGGLE ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,17,23,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    max-width:840px; margin:0 auto;
+    font-family:var(--mono); font-size:13px;
+  }
+  .brand{ color:var(--text-dim); }
+  .brand b{ color:var(--text); font-weight:500; }
+  .mode-toggle{
+    display:flex; gap:2px;
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:2px;
+  }
+  .mode-btn{
+    font-family:var(--mono); font-size:12px;
+    background:transparent; border:none; color:var(--text-dim);
+    padding:6px 12px; border-radius:5px; cursor:pointer;
+    transition:all .15s ease;
+  }
+  .mode-btn.active{ background:var(--accent); color:#0d1117; font-weight:600; }
+  .mode-btn:hover:not(.active){ color:var(--text); }
+
+  /* ---------- TERMINAL BOOT ---------- */
+  .boot{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent);
+    padding:48px 24px 8px;
+    max-width:840px; margin:0 auto;
+    white-space:pre-wrap;
+    min-height: 132px;
+  }
+  .boot .dim{ color:var(--text-faint); }
+  .cursor{
+    display:inline-block; width:7px; height:14px;
+    background:var(--accent); vertical-align:middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 8px 24px 36px; }
+  .hero h1{
+    font-family:var(--sans); font-weight:700;
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    letter-spacing:-0.02em;
+    margin-bottom:6px;
+  }
+  .hero .role{
+    font-family:var(--mono); color:var(--text-dim); font-size:15px;
+    margin-bottom:20px;
+  }
+  .hero .role .sep{ color:var(--text-faint); margin:0 8px; }
+  .hero p.lede{
+    max-width: 620px;
+    color:var(--text-dim);
+    font-size:16.5px;
+  }
+  .contact-row{
+    margin-top:22px; display:flex; gap:18px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:13px;
+  }
+  .contact-row a{ color:var(--text); border-bottom:1px solid var(--line); }
+  .contact-row a:hover{ border-color:var(--accent); text-decoration:none; color:var(--accent); }
+
+  /* ---------- UNFRAME BANNER (toggle target) ---------- */
+  .context-banner{
+    display:none;
+    margin: 0 24px 8px;
+    max-width: 792px;
+    background: var(--bg-raised);
+    border:1px solid var(--accent-dim);
+    border-left:3px solid var(--accent);
+    border-radius:4px;
+    padding:14px 16px;
+    font-family:var(--mono); font-size:13px; color:var(--text-dim);
+  }
+  .context-banner.show{ display:block; margin-left:auto; margin-right:auto; }
+  .context-banner b{ color:var(--accent); }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 26px 24px; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex; align-items:baseline; gap:10px;
+    margin-bottom:16px;
+  }
+  .section-head .tag{
+    font-family:var(--mono); font-size:12px; color:var(--text-faint);
+  }
+  .section-head h2{
+    font-family:var(--sans); font-size:1.3rem; font-weight:700; color:var(--text);
+  }
+
+  /* profile */
+  .profile-text{ color:var(--text-dim); font-size:15.5px; max-width:680px; }
+  .profile-text .unframe-line{ display:none; }
+  body.mode-unframe .profile-text .unframe-line{ display:inline; }
+  body.mode-unframe .profile-text .general-line{ display:none; }
+
+  /* experience */
+  .job{ margin-bottom:22px; }
+  .job:last-child{ margin-bottom:0; }
+  .job-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:6px 16px;
+    margin-bottom:2px;
+  }
+  .job-title{ font-weight:600; font-size:16px; color:var(--text); }
+  .job-company{ color:var(--accent); font-weight:600; }
+  .job-dates{ font-family:var(--mono); font-size:12.5px; color:var(--text-faint); white-space:nowrap; }
+  .job-sub{ font-size:13px; color:var(--text-faint); font-style:italic; margin-bottom:10px; }
+  .job ul{ list-style:none; padding-left:0; }
+  .job li{
+    position:relative; padding-left:20px; margin-bottom:8px;
+    color:var(--text-dim); font-size:15px;
+  }
+  .job li::before{
+    content:'›'; position:absolute; left:0; color:var(--accent-dim); font-family:var(--mono);
+  }
+  .job li.unframe-only{ display:none; }
+  body.mode-unframe .job li.unframe-only{ display:list-item; }
+  body.mode-unframe .job li.general-extra{ display:none; }
+
+  /* skills */
+  .skill-grid{ display:grid; grid-template-columns: 140px 1fr; gap:10px 16px; font-size:14.5px; }
+  .skill-grid .k{ font-family:var(--mono); color:var(--accent); font-size:13px; padding-top:1px; }
+  .skill-grid .v{ color:var(--text-dim); }
+  @media (max-width:560px){
+    .skill-grid{ grid-template-columns: 1fr; gap:2px 0; }
+    .skill-grid .k{ margin-top:10px; }
+  }
+
+  /* projects */
+  .proj{
+    border:1px solid var(--line); border-radius:6px;
+    padding:16px; margin-bottom:14px; background:var(--bg-raised);
+  }
+  .proj:last-child{ margin-bottom:0; }
+  .proj-name{ font-family:var(--mono); color:var(--text); font-weight:600; font-size:14.5px; margin-bottom:6px; }
+  .proj-desc{ color:var(--text-dim); font-size:14.5px; }
+
+  /* education */
+  .edu-list{ list-style:none; color:var(--text-dim); font-size:15px; }
+  .edu-list li{ margin-bottom:8px; padding-left:18px; position:relative; }
+  .edu-list li::before{ content:'◆'; position:absolute; left:0; color:var(--text-faint); font-size:9px; top:6px; }
+
+  footer{
+    padding:28px 24px 48px; text-align:center;
+    font-family:var(--mono); font-size:12px; color:var(--text-faint);
+    border-top:1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{ animation:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><b>egor marachev</b> <span class="dim">/ infra & support</span></div>
+    <div class="mode-toggle" role="group" aria-label="View mode">
+      <button class="mode-btn active" id="btn-general" onclick="setMode('general')">general</button>
+      <button class="mode-btn" id="btn-unframe" onclick="setMode('unframe')">unframe</button>
+    </div>
+  </div>
+</div>
+
+<pre class="boot" id="boot"></pre>
+
+<div class="context-banner" id="context-banner">
+  Viewing in <b>unframe mode</b>, content reordered to emphasize support-org building and AI-tooling work relevant to the Technical Support Lead role.
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Egor Marachev</h1>
+    <div class="role">
+      Technical Services Engineer <span class="sep">·</span> Infrastructure & Systems <span class="sep">·</span> 15+ yrs
+    </div>
+    <p class="lede">
+      I started in tier 1 support back when dial-up was still a thing. Since then I've maintained enterprise
+      data centers, and now I run support at a startup, owning problems end to end and building the
+      function that catches the next one.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:egortechnix@proton.me">egortechnix@proton.me</a>
+      <a href="tel:0547942575">054-794-2575</a>
+      <span style="color:var(--text-faint)">Modi'in, Israel</span>
+      <a href="https://www.linkedin.com/in/egor-m-053303239" target="_blank" rel="noopener">linkedin.com/in/egor-m</a>
+      <a href="https://github.com/Hypnofox" target="_blank" rel="noopener">github.com/Hypnofox</a>
+    </div>
+  </div>
+</div>
+
+<section id="profile">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">01</span><h2>Profile</h2></div>
+    <p class="profile-text">
+      Infrastructure and support engineer with 15+ years across Linux administration, enterprise networking,
+      and customer-facing technical operations.
+      <span class="general-line">
+      Maintain enterprise infrastructure and run my own lab for reproduction and testing. Scripting
+      daily in Bash and Python.
+      </span>
+      <span class="unframe-line">
+      At Faddom I inherited a support function with no process and built it from zero: escalation paths, SLAs,
+      a ticket classification system, a 30+ article KB. I use Claude, Claude Code, and ChatGPT daily as my
+      actual investigation tools, not novelties. Leading and mentoring three support engineers in practice.
+      Comfortable working from incomplete signals: customer symptoms, logs, database state, infrastructure
+      behavior.
+      </span>
+      Fluent in English, Hebrew, and Russian.
+    </p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">02</span><h2>Experience</h2></div>
+
+    <div class="job">
+      <div class="job-head">
+        <span><span class="job-title">Technical Services Engineer</span> · <span class="job-company">Faddom Ltd.</span></span>
+        <span class="job-dates">Sep 2025 - Present</span>
+      </div>
+      <div class="job-sub">Agentless network discovery & application dependency mapping platform</div>
+      <ul>
+        <li class="unframe-only">Built the support function from zero: escalation paths, SLAs, a ticket classification system, Intercom workflows, a 30+ article KB.</li>
+        <li class="unframe-only">Leading and mentoring three support engineers in practice; primary bridge to R&D, CPO, and CTO.</li>
+        <li class="unframe-only">Use Claude, Claude Code, and ChatGPT daily for log analysis, support reporting, and workflow automation in Python and Bash.</li>
+        <li class="general-extra">Own technical issues end to end for 20+ enterprise customers, triage, root cause, resolution.</li>
+        <li>Resolved PostgreSQL WAL corruption, JVM heap exhaustion under autovacuum lock contention, and a silent Java ArithmeticException causing rapid DB disk growth, isolated from logs and schema, no source access.</li>
+        <li>Led the CentOS-to-Windows migration for Volkswagen Argentina: lab-reproduced the full path, fixed proxy auth and locale mismatches.</li>
+        <li class="general-extra">Built a Kubernetes/sFlow mapper feeding container traffic into Faddom's discovery engine.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span><span class="job-title">IT Systems Engineer - GCP & VCS</span> · <span class="job-company">Verifone</span></span>
+        <span class="job-dates">Mar 2023 - Aug 2025</span>
+      </div>
+      <div class="job-sub">Global enterprise payment technology, EMEA infrastructure</div>
+      <ul>
+        <li>Managed Windows/Linux infrastructure across EMEA; administered VMware ESXi/vCenter, provisioning, upgrades.</li>
+        <li>Automated patch management via PowerShell and Bash; maintained Veeam/Nakivo backup and recovery.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Earlier</span>
+        <span class="job-dates">2016 - 2023</span>
+      </div>
+      <ul>
+        <li>IT Specialist & Field Technician, Psagot Computing Solutions, 100+ SMB/enterprise clients, AD/Exchange/O365.</li>
+        <li>IT Specialist, H4TS, Windows/Linux infra, virtualization, security tooling, OSINT.</li>
+        <li>Senior Help Desk, 013 Netvision, Tier 2 ISP support, fiber/cable/IPTV diagnostics, VoIP.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="more">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">03</span><h2>Also</h2></div>
+    <p class="profile-text" style="margin-bottom:18px;">
+      Maintain enterprise data center infrastructure and run my own lab environment for reproduction and
+      testing. Wrote a Kubernetes/sFlow mapper and a set of Python scripts for support report generation and
+      ticket triage, built with Claude Code as a daily tool. Cloud and DevOps training is used as
+      troubleshooting depth, not a claim to be a pure DevOps engineer, enough to understand environments,
+      reproduce issues, and avoid unnecessary handoffs.
+    </p>
+    <div class="skill-grid">
+      <div class="k">core</div><div class="v">Linux (RHEL/CentOS/Ubuntu), PostgreSQL, VMware ESXi/vCenter, CCNP-level networking, Bash/Python</div>
+      <div class="k">also</div><div class="v">Kubernetes, OpenShift, sFlow/NetFlow, OPNsense, Claude/Claude Code/ChatGPT, PowerShell</div>
+      <div class="k">cloud</div><div class="v">GCP infrastructure, GKE concepts, Terraform fundamentals, cloud networking/security, FinOps fundamentals</div>
+      <div class="k">certs</div><div class="v">CCNP Enterprise (2022) · CCNA + Network Security (2017) · Google IT Automation with Python · Data Analysis with Python</div>
+      <div class="k">languages</div><div class="v">English, Hebrew (fluent) · Russian (native)</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  built by hand, not a template, egor marachev © 2026
+</footer>
+
+<script>
+  function setMode(mode){
+    document.body.classList.toggle('mode-unframe', mode === 'unframe');
+    document.getElementById('btn-general').classList.toggle('active', mode === 'general');
+    document.getElementById('btn-unframe').classList.toggle('active', mode === 'unframe');
+    document.getElementById('context-banner').classList.toggle('show', mode === 'unframe');
+  }
+
+  // Boot sequence
+  const bootEl = document.getElementById('boot');
+  const lines = [
+    { text: '$ whoami', dim: false, pause: 250 },
+    { text: 'egor.marachev', dim: true, pause: 200 },
+    { text: '$ uptime --in-field', dim: false, pause: 250 },
+    { text: '15+ years, 0 reboots required', dim: true, pause: 200 },
+    { text: '$ status', dim: false, pause: 300 },
+  ];
+
+  let html = '';
+  let i = 0;
+
+  function typeLine(){
+    if(i >= lines.length){
+      bootEl.innerHTML = html + '<span style="color:var(--text-dim)">online, currently load-bearing at Faddom Ltd.</span> <span class="cursor"></span>';
+      return;
+    }
+    const line = lines[i];
+    const color = line.dim ? 'var(--text-faint)' : 'var(--accent)';
+    html += `<span style="color:${color}">${line.text}</span>\n`;
+    bootEl.innerHTML = html;
+    i++;
+    setTimeout(typeLine, line.pause);
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    bootEl.innerHTML = lines.map(l => `<span style="color:${l.dim?'var(--text-faint)':'var(--accent)'}">${l.text}</span>`).join('\n') + '\n<span style="color:var(--text-dim)">online, currently load-bearing at Faddom Ltd.</span>';
+  } else {
+    typeLine();
+  }
+</script>
+
+
+</body>
+</html>
