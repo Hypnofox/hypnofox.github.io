@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Egor Marachev - Infrastructure & Support Engineer</title>
+<title>Egor Marachev - Technical Support Lead</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -16,7 +16,6 @@
     --text-faint: #4a525c;
     --accent: #9fd356;
     --accent-dim: #6f9a3e;
-    --amber: #d4a24c;
     --mono: 'IBM Plex Mono', monospace;
     --sans: 'Inter', sans-serif;
   }
@@ -36,7 +35,6 @@
 
   .wrap{ max-width: 840px; margin: 0 auto; padding: 0 24px; }
 
-  /* ---------- NAV / MODE TOGGLE ---------- */
   .topbar{
     position:sticky; top:0; z-index:50;
     background:rgba(13,17,23,0.92);
@@ -51,23 +49,12 @@
   }
   .brand{ color:var(--text-dim); }
   .brand b{ color:var(--text); font-weight:500; }
-  .mode-toggle{
-    display:flex; gap:2px;
-    background:var(--bg-raised);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:2px;
+  .topbar a.cv-link{
+    font-family:var(--mono); font-size:12px; color:var(--text-dim);
+    border:1px solid var(--line); border-radius:6px; padding:6px 12px;
   }
-  .mode-btn{
-    font-family:var(--mono); font-size:12px;
-    background:transparent; border:none; color:var(--text-dim);
-    padding:6px 12px; border-radius:5px; cursor:pointer;
-    transition:all .15s ease;
-  }
-  .mode-btn.active{ background:var(--accent); color:#0d1117; font-weight:600; }
-  .mode-btn:hover:not(.active){ color:var(--text); }
+  .topbar a.cv-link:hover{ color:var(--accent); border-color:var(--accent-dim); text-decoration:none; }
 
-  /* ---------- TERMINAL BOOT ---------- */
   .boot{
     font-family:var(--mono);
     font-size:13px;
@@ -85,7 +72,6 @@
   }
   @keyframes blink{ 50%{ opacity:0; } }
 
-  /* ---------- HERO ---------- */
   .hero{ padding: 8px 24px 36px; }
   .hero h1{
     font-family:var(--sans); font-weight:700;
@@ -110,22 +96,6 @@
   .contact-row a{ color:var(--text); border-bottom:1px solid var(--line); }
   .contact-row a:hover{ border-color:var(--accent); text-decoration:none; color:var(--accent); }
 
-  /* ---------- UNFRAME BANNER (toggle target) ---------- */
-  .context-banner{
-    display:none;
-    margin: 0 24px 8px;
-    max-width: 792px;
-    background: var(--bg-raised);
-    border:1px solid var(--accent-dim);
-    border-left:3px solid var(--accent);
-    border-radius:4px;
-    padding:14px 16px;
-    font-family:var(--mono); font-size:13px; color:var(--text-dim);
-  }
-  .context-banner.show{ display:block; margin-left:auto; margin-right:auto; }
-  .context-banner b{ color:var(--accent); }
-
-  /* ---------- SECTIONS ---------- */
   section{ padding: 26px 24px; border-top:1px solid var(--line); }
   .section-head{
     display:flex; align-items:baseline; gap:10px;
@@ -138,13 +108,17 @@
     font-family:var(--sans); font-size:1.3rem; font-weight:700; color:var(--text);
   }
 
-  /* profile */
   .profile-text{ color:var(--text-dim); font-size:15.5px; max-width:680px; }
-  .profile-text .unframe-line{ display:none; }
-  body.mode-unframe .profile-text .unframe-line{ display:inline; }
-  body.mode-unframe .profile-text .general-line{ display:none; }
 
-  /* experience */
+  .highlights{ list-style:none; margin-top:4px; }
+  .highlights li{
+    position:relative; padding-left:20px; margin-bottom:9px;
+    color:var(--text-dim); font-size:15px; max-width:680px;
+  }
+  .highlights li::before{
+    content:'›'; position:absolute; left:0; color:var(--accent-dim); font-family:var(--mono);
+  }
+
   .job{ margin-bottom:22px; }
   .job:last-child{ margin-bottom:0; }
   .job-head{
@@ -164,32 +138,14 @@
   .job li::before{
     content:'›'; position:absolute; left:0; color:var(--accent-dim); font-family:var(--mono);
   }
-  .job li.unframe-only{ display:none; }
-  body.mode-unframe .job li.unframe-only{ display:list-item; }
-  body.mode-unframe .job li.general-extra{ display:none; }
 
-  /* skills */
-  .skill-grid{ display:grid; grid-template-columns: 140px 1fr; gap:10px 16px; font-size:14.5px; }
+  .skill-grid{ display:grid; grid-template-columns: 150px 1fr; gap:10px 16px; font-size:14.5px; }
   .skill-grid .k{ font-family:var(--mono); color:var(--accent); font-size:13px; padding-top:1px; }
   .skill-grid .v{ color:var(--text-dim); }
   @media (max-width:560px){
     .skill-grid{ grid-template-columns: 1fr; gap:2px 0; }
     .skill-grid .k{ margin-top:10px; }
   }
-
-  /* projects */
-  .proj{
-    border:1px solid var(--line); border-radius:6px;
-    padding:16px; margin-bottom:14px; background:var(--bg-raised);
-  }
-  .proj:last-child{ margin-bottom:0; }
-  .proj-name{ font-family:var(--mono); color:var(--text); font-weight:600; font-size:14.5px; margin-bottom:6px; }
-  .proj-desc{ color:var(--text-dim); font-size:14.5px; }
-
-  /* education */
-  .edu-list{ list-style:none; color:var(--text-dim); font-size:15px; }
-  .edu-list li{ margin-bottom:8px; padding-left:18px; position:relative; }
-  .edu-list li::before{ content:'◆'; position:absolute; left:0; color:var(--text-faint); font-size:9px; top:6px; }
 
   footer{
     padding:28px 24px 48px; text-align:center;
@@ -208,28 +164,21 @@
 <div class="topbar">
   <div class="topbar-inner">
     <div class="brand"><b>egor marachev</b> <span class="dim">/ infra & support</span></div>
-    <div class="mode-toggle" role="group" aria-label="View mode">
-      <button class="mode-btn active" id="btn-general" onclick="setMode('general')">general</button>
-      <button class="mode-btn" id="btn-unframe" onclick="setMode('unframe')">unframe</button>
-    </div>
+    <a class="cv-link" href="mailto:egortechnix@proton.me">get in touch</a>
   </div>
 </div>
 
 <pre class="boot" id="boot"></pre>
 
-<div class="context-banner" id="context-banner">
-  Viewing in <b>unframe mode</b>, content reordered to emphasize support-org building and AI-tooling work relevant to the Technical Support Lead role.
-</div>
-
 <div class="hero">
   <div class="wrap">
     <h1>Egor Marachev</h1>
     <div class="role">
-      Technical Services Engineer <span class="sep">·</span> Infrastructure & Systems <span class="sep">·</span> 15+ yrs
+      Technical Support Lead <span class="sep">·</span> Enterprise SaaS <span class="sep">·</span> AI-Assisted Troubleshooting
     </div>
     <p class="lede">
       I started in tier 1 support back when dial-up was still a thing. Since then I've maintained enterprise
-      data centers, and now I run support at a startup, owning problems end to end and building the
+      data centers, and now I build and lead support at a startup, owning problems end to end and the
       function that catches the next one.
     </p>
     <div class="contact-row">
@@ -246,42 +195,45 @@
   <div class="wrap">
     <div class="section-head"><span class="tag">01</span><h2>Profile</h2></div>
     <p class="profile-text">
-      Infrastructure and support engineer with 15+ years across Linux administration, enterprise networking,
-      and customer-facing technical operations.
-      <span class="general-line">
-      Maintain enterprise infrastructure and run my own lab for reproduction and testing. Scripting
-      daily in Bash and Python.
-      </span>
-      <span class="unframe-line">
-      At Faddom I inherited a support function with no process and built it from zero: escalation paths, SLAs,
-      a ticket classification system, a 30+ article KB. I use Claude, Claude Code, and ChatGPT daily as my
-      actual investigation tools, not novelties. Leading and mentoring three support engineers in practice.
-      Comfortable working from incomplete signals: customer symptoms, logs, database state, infrastructure
-      behavior.
-      </span>
-      Fluent in English, Hebrew, and Russian.
+      Technical Support Lead with 15+ years of enterprise SaaS and infrastructure experience, specializing in
+      building scalable support organizations for complex technical products. Experienced designing support
+      operations from the ground up: SLAs, escalation models, AI-assisted investigation workflows, knowledge
+      management, and cross-functional collaboration with Product and Engineering. I use AI daily to increase
+      support efficiency while keeping the customer experience sharp. Fluent in English, Hebrew, and Russian.
     </p>
+  </div>
+</section>
+
+<section id="highlights">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">02</span><h2>Highlights</h2></div>
+    <ul class="highlights">
+      <li>Established Faddom's customer support organization from the ground up: operating processes, SLAs, escalation models, ticket taxonomy, Intercom workflows, investigation standards, and internal playbooks.</li>
+      <li>Investigate logs, infrastructure, databases, and system behavior independently before escalating to Product or Engineering.</li>
+      <li>Daily use of Claude, Claude Code, ChatGPT, and Python automation for log analysis, issue investigation, reporting, and knowledge retrieval.</li>
+      <li>Own communication and prioritization for 20+ concurrent enterprise customers, including production-impacting incidents.</li>
+    </ul>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="section-head"><span class="tag">02</span><h2>Experience</h2></div>
+    <div class="section-head"><span class="tag">03</span><h2>Experience</h2></div>
 
     <div class="job">
       <div class="job-head">
-        <span><span class="job-title">Technical Services Engineer</span> · <span class="job-company">Faddom Ltd.</span></span>
+        <span><span class="job-title">Technical Services Engineer & Customer Support Lead</span> · <span class="job-company">Faddom Ltd.</span></span>
         <span class="job-dates">Sep 2025 - Present</span>
       </div>
-      <div class="job-sub">Agentless network discovery & application dependency mapping platform</div>
+      <div class="job-sub">Agentless network discovery and application dependency mapping platform</div>
       <ul>
-        <li class="unframe-only">Built the support function from zero: escalation paths, SLAs, a ticket classification system, Intercom workflows, a 30+ article KB.</li>
-        <li class="unframe-only">Leading and mentoring three support engineers in practice; primary bridge to R&D, CPO, and CTO.</li>
-        <li class="unframe-only">Use Claude, Claude Code, and ChatGPT daily for log analysis, support reporting, and workflow automation in Python and Bash.</li>
-        <li class="general-extra">Own technical issues end to end for 20+ enterprise customers, triage, root cause, resolution.</li>
-        <li>Resolved PostgreSQL WAL corruption, JVM heap exhaustion under autovacuum lock contention, and a silent Java ArithmeticException causing rapid DB disk growth, isolated from logs and schema, no source access.</li>
-        <li>Led the CentOS-to-Windows migration for Volkswagen Argentina: lab-reproduced the full path, fixed proxy auth and locale mismatches.</li>
-        <li class="general-extra">Built a Kubernetes/sFlow mapper feeding container traffic into Faddom's discovery engine.</li>
+        <li>Built the technical support function from the ground up: SLAs, escalation paths, Intercom workflows, ticket classification, playbooks, and support operating rhythm.</li>
+        <li>Built and continuously evolved a living knowledge base covering troubleshooting procedures, known issues, escalation paths, and operational playbooks, enabling faster onboarding and greater first-line resolution.</li>
+        <li>Provide technical leadership and mentoring for three support engineers, including onboarding, ticket guidance, investigation approach, and escalation quality.</li>
+        <li>Own end-to-end support operations for 20+ enterprise customers, driving prioritization, customer communication, production incident management, and engineering escalation until resolution.</li>
+        <li>Resolve production issues including PostgreSQL WAL corruption, JVM heap pressure, autovacuum lock contention, and a silent Java ArithmeticException causing rapid database growth.</li>
+        <li>Designed AI-assisted investigation workflows using Claude, Claude Code, ChatGPT, Python, and Bash to accelerate root cause analysis, automate repetitive investigation tasks, and improve knowledge retrieval.</li>
+        <li>Partner closely with Product and Engineering to identify recurring issues, improve product supportability, reduce recurring incidents, and feed customer insights back into product development.</li>
       </ul>
     </div>
 
@@ -290,43 +242,62 @@
         <span><span class="job-title">IT Systems Engineer - GCP & VCS</span> · <span class="job-company">Verifone</span></span>
         <span class="job-dates">Mar 2023 - Aug 2025</span>
       </div>
-      <div class="job-sub">Global enterprise payment technology, EMEA infrastructure</div>
+      <div class="job-sub">Global enterprise payment technology company, EMEA infrastructure</div>
       <ul>
-        <li>Managed Windows/Linux infrastructure across EMEA; administered VMware ESXi/vCenter, provisioning, upgrades.</li>
-        <li>Automated patch management via PowerShell and Bash; maintained Veeam/Nakivo backup and recovery.</li>
+        <li>Managed Windows Server, Linux, VMware ESXi/vCenter, backup, and production infrastructure across EMEA.</li>
+        <li>Automated operational workflows with PowerShell and Bash, including patching support, DNS tasks, inventory checks, and repetitive infrastructure administration.</li>
+        <li>Acted as an escalation point for critical infrastructure incidents across EMEA time zones, coordinating between technical teams and business stakeholders.</li>
       </ul>
     </div>
 
     <div class="job">
       <div class="job-head">
-        <span class="job-title">Earlier</span>
+        <span class="job-title">Earlier Technical Roles</span>
         <span class="job-dates">2016 - 2023</span>
       </div>
+      <div class="job-sub">Hands-on Microsoft environments, Windows/Linux infrastructure, virtualization, security tooling, ISP support, network diagnostics, VoIP troubleshooting, customer escalation handling</div>
       <ul>
-        <li>IT Specialist & Field Technician, Psagot Computing Solutions, 100+ SMB/enterprise clients, AD/Exchange/O365.</li>
-        <li>IT Specialist, H4TS, Windows/Linux infra, virtualization, security tooling, OSINT.</li>
-        <li>Senior Help Desk, 013 Netvision, Tier 2 ISP support, fiber/cable/IPTV diagnostics, VoIP.</li>
+        <li>IT Specialist & Field Technician, Psagot Computing Solutions</li>
+        <li>IT Specialist, H4TS</li>
+        <li>Senior Help Desk, 013 Netvision</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section id="more">
+<section id="leadership">
   <div class="wrap">
-    <div class="section-head"><span class="tag">03</span><h2>Also</h2></div>
-    <p class="profile-text" style="margin-bottom:18px;">
-      Maintain enterprise data center infrastructure and run my own lab environment for reproduction and
-      testing. Wrote a Kubernetes/sFlow mapper and a set of Python scripts for support report generation and
-      ticket triage, built with Claude Code as a daily tool. Cloud and DevOps training is used as
-      troubleshooting depth, not a claim to be a pure DevOps engineer, enough to understand environments,
-      reproduce issues, and avoid unnecessary handoffs.
-    </p>
+    <div class="section-head"><span class="tag">04</span><h2>Support Leadership</h2></div>
+    <ul class="highlights">
+      <li>Built practical support tooling, including Python-based monthly support report generation and Intercom automation scripts.</li>
+      <li>Comfortable working from incomplete signals: customer symptoms, logs, database state, infrastructure behavior, and operational context.</li>
+      <li>Strong written communication style for technical audiences and management: incident updates, customer explanations, escalation summaries, and internal playbooks.</li>
+      <li>Cloud and DevOps training are used as troubleshooting depth, not a claim to be a pure DevOps engineer, giving strong cross-functional understanding of modern enterprise architectures.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">05</span><h2>Technical Skills</h2></div>
     <div class="skill-grid">
-      <div class="k">core</div><div class="v">Linux (RHEL/CentOS/Ubuntu), PostgreSQL, VMware ESXi/vCenter, CCNP-level networking, Bash/Python</div>
-      <div class="k">also</div><div class="v">Kubernetes, OpenShift, sFlow/NetFlow, OPNsense, Claude/Claude Code/ChatGPT, PowerShell</div>
-      <div class="k">cloud</div><div class="v">GCP infrastructure, GKE concepts, Terraform fundamentals, cloud networking/security, FinOps fundamentals</div>
-      <div class="k">certs</div><div class="v">CCNP Enterprise (2022) · CCNA + Network Security (2017) · Google IT Automation with Python · Data Analysis with Python</div>
+      <div class="k">support ops</div><div class="v">SLA design, escalation management, triage models, ticket classification, Intercom workflows, knowledge base ownership, RCA, incident communication</div>
+      <div class="k">ai & automation</div><div class="v">Claude, Claude Code, ChatGPT, AI-assisted log analysis, Python automation, Bash, PowerShell, support report generation, workflow automation</div>
+      <div class="k">infrastructure</div><div class="v">Linux (RHEL/CentOS/Ubuntu), Windows Server, VMware ESXi/vCenter, Proxmox, Hyper-V, Nutanix, systemd, production log inspection</div>
+      <div class="k">databases</div><div class="v">PostgreSQL diagnostics, WAL recovery, database growth analysis, lock contention, autovacuum troubleshooting</div>
+      <div class="k">networking</div><div class="v">CCNP-level routing and switching, VLANs, IPsec VPN, sFlow/NetFlow, OPNsense, packet-level troubleshooting</div>
+      <div class="k">cloud</div><div class="v">Google Cloud infrastructure, GKE concepts, Terraform fundamentals, cloud networking, cloud security, observability, FinOps fundamentals</div>
       <div class="k">languages</div><div class="v">English, Hebrew (fluent) · Russian (native)</div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">06</span><h2>Education & Certifications</h2></div>
+    <div class="skill-grid">
+      <div class="k">certs</div><div class="v">CCNP Enterprise, ITQ College (2022) · CCNA + Network Security, HackerU College (2017) · Data Analysis with Python, Yandex Practicum (2021)</div>
+      <div class="k">training</div><div class="v">Google Cloud Boost · Google IT Automation with Python · DevOps Certifications</div>
     </div>
   </div>
 </section>
@@ -336,14 +307,6 @@
 </footer>
 
 <script>
-  function setMode(mode){
-    document.body.classList.toggle('mode-unframe', mode === 'unframe');
-    document.getElementById('btn-general').classList.toggle('active', mode === 'general');
-    document.getElementById('btn-unframe').classList.toggle('active', mode === 'unframe');
-    document.getElementById('context-banner').classList.toggle('show', mode === 'unframe');
-  }
-
-  // Boot sequence
   const bootEl = document.getElementById('boot');
   const lines = [
     { text: '$ whoami', dim: false, pause: 250 },
@@ -358,7 +321,7 @@
 
   function typeLine(){
     if(i >= lines.length){
-      bootEl.innerHTML = html + '<span style="color:var(--text-dim)">online, currently load-bearing at Faddom Ltd.</span> <span class="cursor"></span>';
+      bootEl.innerHTML = html + '<span style="color:var(--text-dim)">online, building support at Faddom Ltd.</span> <span class="cursor"></span>';
       return;
     }
     const line = lines[i];
@@ -370,12 +333,11 @@
   }
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    bootEl.innerHTML = lines.map(l => `<span style="color:${l.dim?'var(--text-faint)':'var(--accent)'}">${l.text}</span>`).join('\n') + '\n<span style="color:var(--text-dim)">online, currently load-bearing at Faddom Ltd.</span>';
+    bootEl.innerHTML = lines.map(l => `<span style="color:${l.dim?'var(--text-faint)':'var(--accent)'}">${l.text}</span>`).join('\n') + '\n<span style="color:var(--text-dim)">online, building support at Faddom Ltd.</span>';
   } else {
     typeLine();
   }
 </script>
-
 
 </body>
 </html>
