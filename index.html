@@ -85,12 +85,26 @@
   }
   .hero .role .sep{ color:var(--text-faint); margin:0 8px; }
   .hero p.lede{
-    max-width: 620px;
+    max-width: 580px;
     color:var(--text-dim);
-    font-size:15.5px;
+    font-size:14px;
+  }
+  .social-row{
+    margin: 8px 0 16px;
+    display:flex; gap:16px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:13px;
+  }
+  .social-row a{
+    color:var(--text);
+    border-bottom:1px solid var(--line);
+  }
+  .social-row a:hover{
+    border-color:var(--accent);
+    text-decoration:none;
+    color:var(--accent);
   }
   .contact-row{
-    margin-top:22px; display:flex; gap:18px; flex-wrap:wrap;
+    margin-top:18px; display:flex; gap:18px; flex-wrap:wrap;
     font-family:var(--mono); font-size:13px;
   }
   .contact-row a{ color:var(--text); border-bottom:1px solid var(--line); }
@@ -174,42 +188,30 @@
   <div class="wrap">
     <h1>Egor Marachev</h1>
     <div class="role">
-      Technical Support Lead <span class="sep">·</span> Infrastructure Support <span class="sep">·</span> AI-Assisted Troubleshooting
+      Technical Support Lead <span class="sep">·</span> Infrastructure Troubleshooting <span class="sep">·</span> Support Operations
+    </div>
+    <div class="social-row">
+      <a href="https://www.linkedin.com/in/egor-m-053303239" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Hypnofox" target="_blank" rel="noopener">GitHub</a>
     </div>
     <p class="lede">
-      I build support systems for technical products: the processes, playbooks, investigations, and customer
-      communication that keep production issues from turning into archaeology. Infrastructure geek by trade,
-      support lead by function, AI-assisted because sleep is nice.
+      I turn messy production issues into clear investigations, calmer customers, and fewer engineering handoffs.
+      Support lead. Infrastructure geek. AI-assisted because sleep is nice.
     </p>
     <div class="contact-row">
       <a href="mailto:egortechnix@proton.me">egortechnix@proton.me</a>
       <a href="tel:0547942575">054-794-2575</a>
       <span style="color:var(--text-faint)">Modi'in, Israel</span>
-      <a href="https://www.linkedin.com/in/egor-m-053303239" target="_blank" rel="noopener">linkedin.com/in/egor-m</a>
-      <a href="https://github.com/Hypnofox" target="_blank" rel="noopener">github.com/Hypnofox</a>
     </div>
   </div>
 </div>
 
-<section id="profile">
-  <div class="wrap">
-    <div class="section-head"><span class="tag">01</span><h2>Profile</h2></div>
-    <p class="profile-text">
-      I'm a Technical Support Lead with 15+ years across enterprise infrastructure, SaaS, networking, Linux,
-      Windows, virtualization, and the strange places where customer symptoms meet system behavior.
-      I build support from the ground up: SLAs, escalation paths, ticket taxonomy, internal playbooks,
-      investigation workflows, and knowledge bases that turn chaos into repeatable work. I use AI daily
-      for log analysis, reporting, knowledge retrieval, and speeding up the boring parts so humans can
-      focus on judgment. Fluent in English, Hebrew, and Russian.
-    </p>
-  </div>
-</section>
 
 <section id="highlights">
   <div class="wrap">
-    <div class="section-head"><span class="tag">02</span><h2>Highlights</h2></div>
+    <div class="section-head"><span class="tag">01</span><h2>Highlights</h2></div>
     <ul class="highlights">
-      <li>Built Faddom's support function from a zero-process starting point: SLAs, escalation models, ticket taxonomy, Intercom workflows, investigation standards, and internal playbooks.</li>
+      <li>Built Faddom's support function from zero: ticket taxonomy, Intercom workflows, escalation model, investigation standards, and internal playbooks.</li>
       <li>Investigate logs, infrastructure, databases, and system behavior before escalating, because “please check” is not a troubleshooting strategy.</li>
       <li>Use Claude, Claude Code, ChatGPT, Python, Bash, and PowerShell to speed up log analysis, reporting, issue investigation, and knowledge retrieval.</li>
       <li>Own prioritization and communication for 20+ concurrent enterprise customers, including incidents where clarity matters as much as speed.</li>
@@ -219,7 +221,7 @@
 
 <section id="experience">
   <div class="wrap">
-    <div class="section-head"><span class="tag">03</span><h2>Experience</h2></div>
+    <div class="section-head"><span class="tag">02</span><h2>Experience</h2></div>
 
     <div class="job">
       <div class="job-head">
@@ -228,13 +230,13 @@
       </div>
       <div class="job-sub">Agentless network discovery and application dependency mapping platform</div>
       <ul>
-        <li>Built the technical support function from the ground up: SLAs, escalation paths, Intercom workflows, ticket classification, playbooks, and operating rhythm.</li>
-        <li>Built and continuously evolved a living knowledge base covering troubleshooting procedures, known issues, escalation paths, and operational playbooks, helping new support engineers ramp faster and resolve more without Engineering handoffs.</li>
-        <li>Provide technical leadership for three support engineers: onboarding, ticket guidance, investigation approach, escalation quality, and the occasional reality check from production.</li>
-        <li>Own end-to-end support operations for 20+ enterprise customers, including prioritization, customer communication, production incident handling, and Engineering escalation until resolution.</li>
+        <li>Created the operating rhythm for support: triage, customer updates, escalation quality, playbooks, and a clear path from issue report to resolution.</li>
+        <li>Built a living knowledge base for troubleshooting procedures, known issues, customer explanations, and operational playbooks.</li>
+        <li>Lead three support engineers through onboarding, ticket guidance, investigation approach, and escalation quality.</li>
+        <li>Own support operations for 20+ enterprise customers, including prioritization, customer communication, and production incident handling.</li>
         <li>Resolve production issues including PostgreSQL WAL corruption, JVM heap pressure, autovacuum lock contention, and a silent Java ArithmeticException that caused rapid database growth.</li>
-        <li>Designed AI-assisted investigation workflows using Claude, Claude Code, ChatGPT, Python, and Bash to accelerate root-cause analysis, automate repetitive checks, and improve knowledge retrieval.</li>
-        <li>Partner with Product and Engineering to identify recurring issues, improve product supportability, reduce repeat incidents, and feed customer reality back into product development.</li>
+        <li>Use Claude, Claude Code, ChatGPT, Python, and Bash to speed up root-cause analysis, automate repetitive checks, and improve knowledge retrieval.</li>
+        <li>Partner with Product and Engineering to improve supportability, reduce repeat incidents, and feed customer reality back into product development.</li>
       </ul>
     </div>
 
@@ -268,19 +270,19 @@
 
 <section id="leadership">
   <div class="wrap">
-    <div class="section-head"><span class="tag">04</span><h2>Support Leadership</h2></div>
+    <div class="section-head"><span class="tag">03</span><h2>Support Leadership</h2></div>
     <ul class="highlights">
-      <li>Built practical support tooling, including Python-based monthly support report generation and Intercom automation scripts.</li>
-      <li>Comfortable working from incomplete signals: customer symptoms, logs, database state, infrastructure behavior, and operational context. In other words, normal Tuesday.</li>
-      <li>Write clearly for both technical and management audiences: incident updates, customer explanations, escalation summaries, and internal playbooks.</li>
-      <li>Cloud and DevOps training are used as troubleshooting depth, not as cosplay. I understand enough of modern infrastructure to ask better questions, isolate failures faster, and reduce Engineering noise.</li>
+      <li>Built Python-based support reporting and Intercom automation scripts.</li>
+      <li>Comfortable working from incomplete signals: symptoms, logs, database state, infrastructure behavior, and operational context.</li>
+      <li>Write clear incident updates, customer explanations, escalation summaries, and internal playbooks.</li>
+      <li>Cloud and DevOps training are used as troubleshooting depth, not as cosplay: enough context to ask better questions, isolate failures faster, and reduce Engineering noise.</li>
     </ul>
   </div>
 </section>
 
 <section id="skills">
   <div class="wrap">
-    <div class="section-head"><span class="tag">05</span><h2>Technical Skills</h2></div>
+    <div class="section-head"><span class="tag">04</span><h2>Technical Skills</h2></div>
     <div class="skill-grid">
       <div class="k">support ops</div><div class="v">SLA design, escalation management, triage models, ticket classification, Intercom workflows, knowledge base ownership, RCA, incident communication</div>
       <div class="k">ai & automation</div><div class="v">Claude, Claude Code, ChatGPT, AI-assisted log analysis, Python automation, Bash, PowerShell, support report generation, workflow automation</div>
@@ -295,7 +297,7 @@
 
 <section id="education">
   <div class="wrap">
-    <div class="section-head"><span class="tag">06</span><h2>Education & Certifications</h2></div>
+    <div class="section-head"><span class="tag">05</span><h2>Education & Certifications</h2></div>
     <div class="skill-grid">
       <div class="k">certs</div><div class="v">CCNP Enterprise, ITQ College (2022) · CCNA + Network Security, HackerU College (2017) · Data Analysis with Python, Yandex Practicum (2021)</div>
       <div class="k">training</div><div class="v">Google IT Automation with Python · Google Cloud Skills Boost · Terraform, GKE, cloud networking, security, and observability training · Linux Foundation LFS101</div>
