@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Egor Marachev - Systems Engineer & Technical Problem Solver</title>
+<title>Egor Marachev - Systems Engineer & Technical Support Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -85,14 +85,15 @@
   }
   .hero .role .sep{ color:var(--text-faint); margin:0 8px; }
   .hero p.lede{
-    max-width: 580px;
+    max-width: 760px;
     color:var(--text-dim);
     font-size:14px;
   }
   .social-row{
     margin: 8px 0 16px;
-    display:flex; gap:16px; flex-wrap:wrap;
+    display:flex; gap:28px; flex-wrap:nowrap;
     font-family:var(--mono); font-size:13px;
+    white-space:nowrap;
   }
   .social-row a{
     color:var(--text);
@@ -104,8 +105,9 @@
     color:var(--accent);
   }
   .contact-row{
-    margin-top:18px; display:flex; gap:18px; flex-wrap:wrap;
+    margin-top:18px; display:flex; gap:28px; flex-wrap:nowrap;
     font-family:var(--mono); font-size:13px;
+    white-space:nowrap;
   }
   .contact-row a{ color:var(--text); border-bottom:1px solid var(--line); }
   .contact-row a:hover{ border-color:var(--accent); text-decoration:none; color:var(--accent); }
@@ -159,6 +161,7 @@
   @media (max-width:560px){
     .skill-grid{ grid-template-columns: 1fr; gap:2px 0; }
     .skill-grid .k{ margin-top:10px; }
+    .social-row, .contact-row{ flex-wrap:wrap; gap:12px 18px; white-space:normal; }
   }
 
   footer{
@@ -177,7 +180,7 @@
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><b>egor marachev</b> <span class="dim">/ systems, infrastructure, curiosity</span></div>
+    <div class="brand"><b>egor marachev</b> <span class="dim">/ systems, support, infrastructure</span></div>
     <a class="cv-link" href="mailto:egortechnix@proton.me">get in touch</a>
   </div>
 </div>
@@ -188,7 +191,7 @@
   <div class="wrap">
     <h1>Egor Marachev</h1>
     <div class="role">
-      Systems Engineer <span class="sep">·</span> Infrastructure <span class="sep">·</span> Automation
+      Systems Engineer <span class="sep">·</span> Technical Support <span class="sep">·</span> Infrastructure
     </div>
     <div class="social-row">
       <a href="https://www.linkedin.com/in/egor-m-053303239" target="_blank" rel="noopener">LinkedIn</a>
@@ -196,7 +199,7 @@
     </div>
     <p class="lede">
       I like understanding how complex systems work, why they fail, and how to make them better.
-      Infrastructure, networks, automation, field work, music, kitchens and the occasional impossible production issue.
+      My work sits between infrastructure, technical support, automation and clear customer-facing troubleshooting.
     </p>
     <div class="contact-row">
       <a href="mailto:egortechnix@proton.me">egortechnix@proton.me</a>
@@ -211,9 +214,9 @@
   <div class="wrap">
     <div class="section-head"><span class="tag">01</span><h2>What I Do</h2></div>
     <ul class="highlights">
-      <li>Build, integrate and troubleshoot complex technical systems.</li>
+      <li>Support, integrate and troubleshoot complex technical systems.</li>
       <li>Work across Linux, Windows, VMware, networking, databases and cloud infrastructure.</li>
-      <li>Use Python, Bash, PowerShell and AI tools to automate repetitive work and speed up investigations.</li>
+      <li>Use Python, Bash, PowerShell and AI tools to speed up investigations and reduce repetitive work.</li>
       <li>Turn vague symptoms into clear technical direction, useful documentation and practical fixes.</li>
     </ul>
   </div>
@@ -225,15 +228,15 @@
 
     <div class="job">
       <div class="job-head">
-        <span><span class="job-title">Technical Services Engineer & Customer Support Lead</span> · <span class="job-company">Faddom Ltd.</span></span>
+        <span><span class="job-title">Technical Services Engineer</span> · <span class="job-company">Faddom Ltd.</span></span>
         <span class="job-dates">Sep 2025 - Present</span>
       </div>
       <div class="job-sub">Agentless network discovery and application dependency mapping platform</div>
       <ul>
-        <li>Deploy, troubleshoot and support enterprise infrastructure discovery systems in customer environments.</li>
-        <li>Investigate Linux, networking, VMware, PostgreSQL and application issues using logs, command-line tools and packet analysis.</li>
+        <li>Support enterprise customers during deployments, upgrades and production incidents.</li>
+        <li>Troubleshoot Linux, networking, VMware, PostgreSQL and application issues using logs, command-line tools and packet analysis.</li>
         <li>Build practical troubleshooting workflows, internal playbooks and automation for faster root-cause analysis.</li>
-        <li>Work directly with customers, Product and Engineering to resolve complex production issues.</li>
+        <li>Translate customer symptoms into clear technical findings for Product and Engineering.</li>
       </ul>
     </div>
 
@@ -281,7 +284,7 @@
   <div class="wrap">
     <div class="section-head"><span class="tag">04</span><h2>Technical Skills</h2></div>
     <div class="skill-grid">
-      <div class="k">engineering</div><div class="v">systems integration, troubleshooting, RCA, technical documentation, customer-facing technical work, field-ready problem solving</div>
+      <div class="k">support engineering</div><div class="v">technical troubleshooting, RCA, customer-facing investigation, escalation quality, documentation, field-ready problem solving</div>
       <div class="k">automation</div><div class="v">Python, Bash, PowerShell, AI-assisted log analysis, workflow automation, reporting, knowledge retrieval</div>
       <div class="k">infrastructure</div><div class="v">Linux, Windows Server, VMware ESXi/vCenter, Proxmox, Hyper-V, Nutanix, virtualization, production logs, service diagnostics</div>
       <div class="k">databases</div><div class="v">PostgreSQL diagnostics, WAL recovery, database growth analysis, lock contention, autovacuum troubleshooting</div>
@@ -321,7 +324,7 @@
 
   function typeLine(){
     if(i >= lines.length){
-      bootEl.innerHTML = html + '<span style="color:var(--text-dim)">online, always learning.</span> <span class="cursor"></span>';
+      bootEl.innerHTML = html + '<span style="color:var(--text-dim)">online, support-minded systems engineer.</span> <span class="cursor"></span>';
       return;
     }
     const line = lines[i];
@@ -333,7 +336,7 @@
   }
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    bootEl.innerHTML = lines.map(l => `<span style="color:${l.dim?'var(--text-faint)':'var(--accent)'}">${l.text}</span>`).join('\n') + '\n<span style="color:var(--text-dim)">online, always learning.</span>';
+    bootEl.innerHTML = lines.map(l => `<span style="color:${l.dim?'var(--text-faint)':'var(--accent)'}">${l.text}</span>`).join('\n') + '\n<span style="color:var(--text-dim)">online, support-minded systems engineer.</span>';
   } else {
     typeLine();
   }
